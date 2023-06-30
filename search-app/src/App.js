@@ -1,8 +1,10 @@
+import Search from "./pages/search";
+
 // App component (Main)
 function App() {
   return (
     <main className="app">
-      <p>Hello</p>
+      <Search />
     </main>
   );
 }
