@@ -1,15 +1,18 @@
 const express = require("express");
+const cors = require("cors");
 
-// Middleware
 const errorHandler = require("./Middleware/errorHandler");
+const corsOptions = require("./Config/corsOptions");
 
-// Routers
 const searchRouter = require("./Routes/searchRoute");
 
 // Configure the environment variable from the default .env file
 require("dotenv").config();
 
 const app = express();
+
+// Allowed cors for allowed origins
+app.use(cors(corsOptions));
 
 // Link the URL for search router which routes it to the controller which 
 // will handle the API request
