@@ -17,7 +17,6 @@ function SearchComp() {
   // the search results from backend and update the SearchResult component
   function submitHandler(event) {
     event.preventDefault();
-    console.log(searchInputRef.current.value)
     setSearchInput(searchInputRef.current.value);
   }
 

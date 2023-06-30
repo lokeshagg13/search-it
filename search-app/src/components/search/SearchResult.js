@@ -64,7 +64,7 @@ function SearchResult(props) {
               className={classes.imageElement}
               key={image.id}
               id={image.id}
-              src={`https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`}
+              src={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_w.jpg`}
               alt={image.title}
             />
           ))}
