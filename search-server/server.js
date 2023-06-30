@@ -1,33 +1,19 @@
 const express = require("express");
-const axios = require("axios");
 
+// Middleware
+const errorHandler = require("./Middleware/errorHandler");
+
+// Routers
+const searchRouter = require("./Routes/searchRoute");
+
+// Configure the environment variable from the default .env file
 require("dotenv").config();
 
 const app = express();
 
-app.use("/api/images/search/:tag", async (req, res) => {
-    // Get search tag from request parameters
-    const tag = req.params.tag;
-    // Get flickr API key from env
-    const apiKey = process.env.FLICKR_API_KEY
-    // Base URL for flickr API search
-    const REQUEST_URL = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&format=json&nojsoncallback=1`;
-    
-    try {
-        
-        // Send request to cloudinary API
-        const response = await axios.get(REQUEST_URL);
-
-        // Send back the response
-        return res.status(200).json(response.data);
-
-    } catch (error) {
-        console.log(error)
-        return res
-        .status(500)
-        .json({ message: "Error while searching for images" });
-    }
-});
+// Link the URL for search router which routes it to the controller which 
+// will handle the API request
+app.use("/api/images/search", searchRouter);
 
 // Custom middleware for handling invalid api paths
 app.all("*", (req, res, next) => {
