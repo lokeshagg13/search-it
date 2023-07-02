@@ -3,10 +3,10 @@ import { useState, useRef, useEffect } from "react";
 import axios from "../../api/axios";
 import Loader from "../ui/Loader";
 import Notification from "../ui/Notification";
-
-import classes from "./SearchComp.module.css";
 import SearchResult from "./SearchResult";
 import ImageOverlay from "./ImageOverlay";
+
+import classes from "./SearchComp.module.css";
 
 const SEARCH_IMAGE_URL = "/api/images/search";
 

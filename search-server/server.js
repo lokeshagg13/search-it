@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+const credentials = require("./Middleware/credentials");
 const errorHandler = require("./Middleware/errorHandler");
 const corsOptions = require("./Config/corsOptions");
 
@@ -13,8 +14,14 @@ require("dotenv").config();
 
 const app = express();
 
+// Allow credentials for origin
+app.use(credentials);
+
 // Allowed cors for allowed origins
 app.use(cors(corsOptions));
+
+// built-in middleware for json
+app.use(express.json());
 
 // Link the URL for search router which routes it to the controller which 
 // will handle the API request
