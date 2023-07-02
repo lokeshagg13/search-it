@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const credentials = require("./Middleware/credentials");
 const errorHandler = require("./Middleware/errorHandler");
@@ -20,8 +21,14 @@ app.use(credentials);
 // Allowed cors for allowed origins
 app.use(cors(corsOptions));
 
+// built-in middleware for url encoded data
+app.use(express.urlencoded({ extended: false }));
+
 // built-in middleware for json
 app.use(express.json());
+
+// built-in middleware cookie parser
+app.use(cookieParser());
 
 // Link the URL for search router which routes it to the controller which 
 // will handle the API request
