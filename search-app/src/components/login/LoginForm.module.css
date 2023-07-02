@@ -50,8 +50,7 @@
   background-color: #9f5ccc;
   border: 1px solid #9f5ccc;
   border-radius: 4px;
-  align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2.5rem;
 }
 
 .actions a {

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 import axios from "../../api/axios";
 import Notification from "../ui/Notification";
@@ -73,14 +74,10 @@ function SignupForm() {
     setSignupRemarks("Registering your details...");
     try {
       // Axios request to backend server for registration
-      await axios.post(
-        SIGNUP_URL,
-        JSON.stringify({ name, email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      await axios.post(SIGNUP_URL, JSON.stringify({ name, email, password }), {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
       setSignupStatus("success");
       setSignupRemarks("Registration successful ");
 
@@ -90,7 +87,7 @@ function SignupForm() {
       setPassword("");
       setPasswordConfirm("");
     } catch (error) {
-      // Handling errors from server end 
+      // Handling errors from server end
       setSignupStatus("error");
       if (!error?.response) {
         setSignupRemarks("No server response !!!");
@@ -157,7 +154,7 @@ function SignupForm() {
         )}
         <div className={classes.actions}>
           <button>Create Account</button>
-          {/* <Link to="/login">Already Registered? Login here</Link> */}
+          <Link to="/login">Already Registered? Login here</Link>
         </div>
       </form>
     </section>
