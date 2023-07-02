@@ -5,12 +5,12 @@ import classes from "./Modal.module.css";
 function Modal(props) {
   return (
     <div className={classes.modal}>
-      <div className={classes.content}>{props.children}</div>
-      <Fragment>
+      <div className={classes.content}>
         <button className={classes.cancelBtn} onClick={props.onClose}>
-          Close
+          &times;
         </button>
-      </Fragment>
+        {props.children}
+      </div>
     </div>
   );
 }

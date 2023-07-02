@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 
-import axios from "../../api/axios";
 import Loader from "../ui/Loader";
 import Notification from "../ui/Notification";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import SearchResult from "./SearchResult";
 import ImageOverlay from "./ImageOverlay";
 
@@ -11,11 +12,11 @@ import classes from "./SearchComp.module.css";
 const SEARCH_IMAGE_URL = "/api/images/search";
 
 // Search image from backend server using a search expression provided by user
-async function searchImagesByTag(tag) {
+async function searchImagesByTag(axiosPrivate, tag) {
   let response;
   try {
     // Sending request to backend server for searching image
-    response = await axios.get(`${SEARCH_IMAGE_URL}/${tag}`);
+    response = await axiosPrivate.get(`${SEARCH_IMAGE_URL}/${tag}`);
     console.log(response);
     return { status: "SUCCESS", ...response.data };
   } catch (error) {
@@ -26,6 +27,10 @@ async function searchImagesByTag(tag) {
 
 // Search Component used on Search page with Search Input and Search Results
 function SearchComp() {
+  let { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
+  
+  // Ref to search input field
   const searchInputRef = useRef();
   // For search input field
   const [searchInput, setSearchInput] = useState("");
@@ -49,9 +54,12 @@ function SearchComp() {
   // the search results from backend and update the SearchResult component
   async function submitHandler(event) {
     event.preventDefault();
+    if (!searchInputRef.current.value) {
+      return
+    }
     setIsLoading(true);
     setSearchTag(searchInputRef.current.value);
-    let searchResult = await searchImagesByTag(searchInputRef.current.value);
+    let searchResult = await searchImagesByTag(axiosPrivate, searchInputRef.current.value);
 
     // Checking and setting states based on api response
     if (searchResult?.status === "SUCCESS") {
@@ -83,10 +91,13 @@ function SearchComp() {
     setSelectedImage(null);
   }
 
+  const loggedInMessage = `Welcome ${auth.email} !!!`
   // Component will contain search input, submit and reset button for submitting and resetting the search input and
   // SearchResult component containing all the search results based on searchExp prop passed on to it.
   return (
     <>
+      <br />
+      <Notification type="success" message={loggedInMessage} />
       <form onSubmit={submitHandler}>
         <div className={classes.searchForm}>
           <div className={classes.control}>
@@ -97,6 +108,7 @@ function SearchComp() {
               value={searchInput}
               onChange={(event) => setSearchInput(event.target.value)}
               ref={searchInputRef}
+              required
             />
           </div>
           <div className={classes.actions}>

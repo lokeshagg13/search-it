@@ -10,24 +10,17 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-.actions {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.actions button {
+.imageGrid button {
   cursor: pointer;
   font: inherit;
   color: white;
   background-color: #9f5ccc;
   border: 1px solid #9f5ccc;
   border-radius: 4px;
-  padding: 0.5rem 2.5rem;
+  padding: 0;
+  transition: transform 0.3s ease;
 }
 
-.actions button:hover {
-  background-color: #873abb;
-  border-color: #873abb;
+.imageGrid button:hover {
+  transform: scale(1.1);
 }
