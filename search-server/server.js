@@ -44,7 +44,7 @@ app.all("*", (req, res, next) => {
 
 // DB Connection
 mongoose
-  .connect(process.env.DATABASE_LOCAL, {
+  .connect(process.env.DATABASE_ONLINE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
