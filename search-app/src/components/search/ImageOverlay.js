@@ -1,6 +1,7 @@
 import Backdrop from "../ui/Backdrop";
 import Modal from "../ui/Modal";
 
+// Large size image when an image is clicked
 function ImageOverlay(props) {
   const { image, onClose } = props;
 

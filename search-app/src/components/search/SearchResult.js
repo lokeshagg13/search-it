@@ -2,6 +2,7 @@ import Notification from "../ui/Notification";
 
 import classes from "./SearchResult.module.css";
 
+// Showing of grid of search results (only when tag is non null)
 function SearchResult(props) {
   const { tag, images, onImageSelect } = props;
 

@@ -1,5 +1,6 @@
 import classes from "./Modal.module.css";
 
+// Modal for image overlay
 function Modal(props) {
   return (
     <div className={classes.modal}>
