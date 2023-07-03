@@ -98,6 +98,7 @@ function SearchComp() {
     <>
       <br />
       <Notification type="success" message={loggedInMessage} />
+      <h3>What do you want to search for today?</h3>
       <form onSubmit={submitHandler}>
         <div className={classes.searchForm}>
           <div className={classes.control}>

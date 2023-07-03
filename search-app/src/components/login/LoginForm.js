@@ -74,18 +74,21 @@ function LoginForm() {
       setLoginStatus("error");
       if (!error?.response) {
         setLoginRemarks("No server response !!!");
-      } else if (
-        error.response?.status === 400 ||
-        error.response?.status === 401
-      ) {
-        setLoginRemarks("Invalid Credentials !!!");
+      } else if (error.response?.status === 400) {
+        setLoginRemarks(
+          "Invalid password. Please ensure you have entered the correct password."
+        );
+      } else if (error.response?.status === 401) {
+        setLoginRemarks(
+          "User not found. Please check your email or sign up to create a new account."
+        );
       } else {
         setLoginRemarks("Login failed !!!");
       }
     }
   }
 
-  // Login form 
+  // Login form
   return (
     <section className={classes.auth}>
       <h1>Login</h1>
