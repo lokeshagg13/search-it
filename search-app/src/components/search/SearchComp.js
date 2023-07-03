@@ -17,7 +17,6 @@ async function searchImagesByTag(axiosPrivate, tag) {
   try {
     // Sending request to backend server for searching image
     response = await axiosPrivate.get(`${SEARCH_IMAGE_URL}/${tag}`);
-    console.log(response);
     return { status: "SUCCESS", ...response.data };
   } catch (error) {
     if (response?.data) return { status: "FAILED", ...response.data };

@@ -18,7 +18,6 @@ exports.searchImageByTag = async (req, res) => {
         return res.status(200).json(response.data);
 
     } catch (error) {
-        console.log(error)
         return res
         .status(500)
         .json({ message: "Error while searching for images" });
