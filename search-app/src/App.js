@@ -6,6 +6,7 @@ import Page404 from "./pages/page404";
 import Search from "./pages/search";
 import Signup from "./pages/signup";
 import useAuth from "./hooks/useAuth";
+import PersistLogin from "./components/login/PersistLogin";
 import RequireAuth from "./components/login/RequireAuth";
 
 // App component (Main)
@@ -36,8 +37,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
 
           {/* Protected Route - search */}
-          <Route element={<RequireAuth />}>
-            <Route path="/search" element={<Search />} />
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth />}>
+              <Route path="/search" element={<Search />} />
+            </Route>
           </Route>
 
           {/* Invalid Paths */}

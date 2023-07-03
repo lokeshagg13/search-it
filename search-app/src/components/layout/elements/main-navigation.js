@@ -6,11 +6,11 @@ import useAuth from "../../../hooks/useAuth";
 import LoginIcon from "../../ui/icons/LoginIcon";
 import LogoutIcon from "../../ui/icons/LogoutIcon";
 import SignupIcon from "../../ui/icons/SignupIcon";
-
-import classes from "./main-navigation.module.css";
 import SearchIcon from "../../ui/icons/SearchIcon";
 
-const LOGOUR_URL = "/api/user/logout";
+import classes from "./main-navigation.module.css";
+
+const LOGOUT_URL = "/api/user/logout";
 
 // Navigation Bar
 function MainNavigation() {
@@ -25,7 +25,7 @@ function MainNavigation() {
   async function logoutHandler() {
     try {
       // Get request to backend server for logout
-      await axiosPrivate.get(LOGOUR_URL);
+      await axiosPrivate.get(LOGOUT_URL);
       // Reset the auth on logout
       setAuth({});
       // Navigate back to home

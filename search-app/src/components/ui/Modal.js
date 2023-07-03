@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 import classes from "./Modal.module.css";
 
 function Modal(props) {
